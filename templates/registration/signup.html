@@ -1,0 +1,86 @@
+{% extends "base.html" %}
+{% load static %}
+{% block "title" %}Login{% endblock "title" %}
+{% block "content" %}
+
+{% comment "" %}
+<!-- Page Title -->
+<div class="page-title" data-aos="fade">
+  <div class="heading">
+    <div class="container">
+      <div class="row d-flex justify-content-center text-center">
+        <div class="col-lg-8">
+          <h1>SignUp</h1>
+          <p class="mb-0">insert your credentioal for SignUp . if you have an account, click on Login</p>
+        </div>
+        <p></p>
+        <form method="post" data-aos="fade-up" data-aos-delay="400">
+          {% csrf_token %}
+          <p>
+            <div class="col-md-12" center>
+            <input type="text" class="form-control" name="username" placeholder="username" required="required">
+            </div>  
+          </p>
+          <p>
+            <div class="col-md-12" center>
+            <input type="email" class="form-control" name="email" placeholder="email" required="required">
+            </div>  
+          </p>
+          <p>
+            <div class="col-md-12">
+            <input type="text" class="form-control" name="password1" placeholder="password" required="required">
+            </div>  
+          </p>
+          <p>
+            <div class="col-md-12">
+            <input type="text" class="form-control" name="password2" placeholder="confirm password" required="required">
+            </div>  
+          </p>
+          <p><button type="submit">SignUp</button></p>
+          <p><a href="#">Login</a></p>
+      </form>
+      <p></p>
+      {% for message in messages %}
+        <h2 style="color:red;">{{ message }}</h2>
+      {% endfor %}
+      </div>
+      
+    </div>
+  </div>
+</div><!-- End Page Title -->
+{% endcomment %}
+
+
+
+<div class="page-title" data-aos="fade">
+  <div class="heading">
+    <div class="container">
+      <div class="row d-flex justify-content-center text-center">
+        <div class="col-lg-8">
+          <h1>SignUp</h1>
+          <p class="mb-0">insert your credentioal for SignUp. if you have an account, click on Login</p>
+        </div>
+        <p></p>
+        <form method="post">
+          {% csrf_token %}
+          <p><input type="text" name="username" placeholder="username" required="required"></p>
+          <p><input type="email" name="email" placeholder="email" required="required"></p>
+          <p><input type="password" name="password1" placeholder="Password" required="required"></p>
+          <p><input type="password" name="password2" placeholder="Confirm Password" required="required"></p>
+          <p><input type="text" name="id_code" placeholder="ID Code" required="required"></p>
+          <p><input type="text" name="phone" placeholder="Phone" required="required"></p>
+          <p><button type="submit">SignUp</button></p>
+          <p><a href={% url "accounts:login" %}>Login</a></p>
+      </form>
+      {% for message in messages %}
+      <p>
+        <h2 style="color:red;">{{ message }}</h2>
+      </p>
+      {% endfor %}
+      </div>
+      
+    </div>
+  </div>
+</div><!-- End Page Title -->
+
+{% endblock "content" %}
