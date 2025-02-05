@@ -10,7 +10,7 @@ from .forms import CommentsForm
 class BlogView(ListView):
     model = Blog
     template_name = 'blog/blog.html'
-    context_object_name = "blog"
+    context_object_name = "blogs"
     paginate_by = 2
 
     def get_queryset(self):
@@ -42,7 +42,7 @@ class BlogDetailsView(DetailView):
         id = self.kwargs["pk"]
         blog = get_object_or_404(Blog, id=id)
         context = super().get_context_data(**kwargs)
-        context["comments"] = Comments.objects.filter(status=True, blog=blog.id)
+        context["comments"] = Comments.objects.filter(status=True, service=blog.id)
         return context
     
     def post(self, request, *args, **kwargs):

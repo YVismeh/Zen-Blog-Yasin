@@ -4,7 +4,7 @@ from django.db import models
 
 class Agent(models.Model):
     name = models.CharField(max_length=120)
-    rank = models.BooleanField(default=True)
+    rank = models.CharField(max_length=120)
     explane = models.CharField(max_length=200)
     x = models.TextField()
     facebook = models.TextField()
@@ -39,6 +39,7 @@ class SpecialService(models.Model):
 
 class Blog(models.Model):
     title = models.CharField(max_length=120)
+    agent = models.ForeignKey(Agent, on_delete=models.CASCADE)
     desc1 = models.TextField()
     desc2 = models.TextField()
     desc3 = models.TextField()
@@ -55,7 +56,7 @@ class Blog(models.Model):
         return self.title
     
     def truncate_chars(self):
-        return self.desc[:200] 
+        return self.desc1[:200] 
     
 class Comments(models.Model):
     service = models.ForeignKey(Blog, on_delete=models.CASCADE)
